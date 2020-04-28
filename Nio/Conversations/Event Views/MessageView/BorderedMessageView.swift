@@ -87,29 +87,55 @@ struct BorderedMessageView<Model>: View where Model: MessageViewModelProtocol {
         .opacity(colorSchemeContrast == .standard ? 0.5 : 1.0)
     }
 
+    var editBadgeView: some View {
+        let lineWidth: CGFloat = 3.0
+
+        let circle = Circle()
+            .stroke(Color.backgroundColor(for: colorScheme), lineWidth: lineWidth)
+            .overlay(
+                Circle()
+                    .fill(backgroundColor)
+            )
+            .padding(lineWidth)
+
+        let image = Image("edited-message-badge")
+            .aspectRatio(contentMode: .fit)
+            .foregroundColor(.backgroundColor(for: colorScheme))
+            .padding(4.0)
+            .background(circle)
+
+        return image
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             senderView
             VStack(alignment: isMe ? .trailing : .leading, spacing: 3) {
-                VStack(alignment: isMe ? .trailing : .leading, spacing: 5) {
-                    markdownView
-                    
-                    if !connectedEdges.contains(.bottomEdge) {
-                        // It's the last message in a group, so show a timestamp:
-                        timestampView
+                ZStack(alignment: isMe ? .bottomLeading : .bottomTrailing) {
+                    VStack(alignment: isMe ? .trailing : .leading, spacing: 5) {
+                        markdownView
+                            .fixedSize(horizontal: false, vertical: true)
+
+                        if !connectedEdges.contains(.bottomEdge) {
+                            // It's been edited or is the last message in a group, so show a timestamp:
+                            timestampView
+                        }
+                    }
+                        .padding(10)
+                        .background(background)
+                        .contextMenu(ContextMenu(menuItems: {
+                            EventContextMenu(model: contextMenuModel)
+                        }))
+                    if isEdited {
+                        self.editBadgeView
+                            .offset(x: isMe ? -5 : 5, y: 5)
                     }
                 }
-                .padding(10)
-                .background(background)
-                .contextMenu(ContextMenu(menuItems: {
-                    EventContextMenu(model: contextMenuModel)
-                }))
 
                 GroupedReactionsView(reactions: model.reactions)
             }
         }
     }
-                .fixedSize(horizontal: false, vertical: true)
 }
 
 struct BorderedMessageView_Previews: PreviewProvider {
