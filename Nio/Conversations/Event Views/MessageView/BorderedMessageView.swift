@@ -60,18 +60,11 @@ struct BorderedMessageView<Model>: View where Model: MessageViewModelProtocol {
         .scaleEffect(x: isMe ? -1.0 : 1.0, y: 1.0, anchor: .center)
     }
 
-    var bodyView: some View {
-        Text(model.text)
+    var markdownView: some View {
+        MarkdownText(markdownString: model.text) { url in
+            print("Tapped URL:", url)
+        }
             .foregroundColor(textColor)
-    }
-
-    var editedBodyView: some View {
-        Text(model.text + " ")
-            .foregroundColor(textColor)
-        + Text("(" + L10n.Event.edited + ")")
-            .font(.caption)
-            .foregroundColor(textColor
-                .opacity(colorSchemeContrast == .standard ? 0.5 : 1.0))
     }
 
     var senderView: some View {
@@ -99,17 +92,13 @@ struct BorderedMessageView<Model>: View where Model: MessageViewModelProtocol {
             senderView
             VStack(alignment: isMe ? .trailing : .leading, spacing: 3) {
                 VStack(alignment: isMe ? .trailing : .leading, spacing: 5) {
-                    if isEdited {
-                        editedBodyView
-                    } else {
-                        bodyView
-                    }
+                    markdownView
+                    
                     if !connectedEdges.contains(.bottomEdge) {
                         // It's the last message in a group, so show a timestamp:
                         timestampView
                     }
                 }
-                .fixedSize(horizontal: false, vertical: true)
                 .padding(10)
                 .background(background)
                 .contextMenu(ContextMenu(menuItems: {
@@ -120,6 +109,7 @@ struct BorderedMessageView<Model>: View where Model: MessageViewModelProtocol {
             }
         }
     }
+                .fixedSize(horizontal: false, vertical: true)
 }
 
 struct BorderedMessageView_Previews: PreviewProvider {
