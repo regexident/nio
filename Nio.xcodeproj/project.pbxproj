@@ -79,7 +79,9 @@
 		CAC46D7323A6AE890079C24F /* TypedEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC46D7223A6AE890079C24F /* TypedEvents.swift */; };
 		CAC46D7723A6CB6C0079C24F /* MXEventType+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC46D7623A6CB6C0079C24F /* MXEventType+Equatable.swift */; };
 		CAC46D7923A6D4B90079C24F /* TypedEventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC46D7823A6D4B90079C24F /* TypedEventsTests.swift */; };
+		CAF2AE832458B86F00D84133 /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = CAF2AE822458B86F00D84133 /* SwiftyMarkdown */; };
 		CAF2AE892458EEBC00D84133 /* AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2AE882458EEBB00D84133 /* AttributedText.swift */; };
+		CAF2AE8E2458EF4200D84133 /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = CAF2AE8D2458EF4200D84133 /* SwiftyMarkdown */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,6 +194,8 @@
 				3923899F238ABA5700B2E1DF /* KeychainAccess in Frameworks */,
 				87FE3870173FD55A91B15921 /* Pods_Nio.framework in Frameworks */,
 				3970DC942385A8BE00EFE31B /* KeyboardObserving in Frameworks */,
+				CAF2AE832458B86F00D84133 /* SwiftyMarkdown in Frameworks */,
+				CAF2AE8E2458EF4200D84133 /* SwiftyMarkdown in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +499,8 @@
 				3970DC932385A8BE00EFE31B /* KeyboardObserving */,
 				3923899E238ABA5700B2E1DF /* KeychainAccess */,
 				3984654723B8D809006C173B /* SDWebImageSwiftUI */,
+				CAF2AE822458B86F00D84133 /* SwiftyMarkdown */,
+				CAF2AE8D2458EF4200D84133 /* SwiftyMarkdown */,
 			);
 			productName = Nio;
 			productReference = 39C931D92384328A004449E1 /* Nio.app */;
@@ -534,6 +540,7 @@
 				3970DC922385A8BE00EFE31B /* XCRemoteSwiftPackageReference "KeyboardObserving" */,
 				3923899D238ABA5700B2E1DF /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				3984654623B8D809006C173B /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				CAF2AE8C2458EF4200D84133 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */,
 			);
 			productRefGroup = 39C931DA2384328A004449E1 /* Products */;
 			projectDirPath = "";
@@ -1055,6 +1062,22 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		CAF2AE812458B86F00D84133 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimonFairbairn/SwiftyMarkdown.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
+		CAF2AE8C2458EF4200D84133 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimonFairbairn/SwiftyMarkdown";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1072,6 +1095,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3984654623B8D809006C173B /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		CAF2AE822458B86F00D84133 /* SwiftyMarkdown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CAF2AE812458B86F00D84133 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */;
+			productName = SwiftyMarkdown;
+		};
+		CAF2AE8D2458EF4200D84133 /* SwiftyMarkdown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CAF2AE8C2458EF4200D84133 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */;
+			productName = SwiftyMarkdown;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
